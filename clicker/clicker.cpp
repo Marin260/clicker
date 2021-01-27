@@ -5,8 +5,8 @@
 #include"SFML/Graphics.hpp"
 #include"SFML/Audio.hpp"
 #include"SFML/Window.hpp"
-#include "Button.h"
-#include "Text.h"
+#include"Button.h"
+#include"Text.h"
 
 /*
 	Marine, pisao sam komentare na engleskom jer si i ti, al mozda bi ipak trebali na hrvatskom.
@@ -77,7 +77,7 @@ int main()
 	while (window.isOpen())
 	{
 		float timer = 0;
-		int time = 0;
+		float time = 0;
 		timer = timeClock.getElapsedTime().asSeconds();
 		timer = ceilf(timer * 100) / 100; // turning it into normal lmao
 		time += timer;

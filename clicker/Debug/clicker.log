@@ -1,39 +1,9 @@
-﻿  Button.cpp
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(42,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(43,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(67,16): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(68,16): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
+﻿  Text.cpp
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.cpp(35,20): warning C4018: '<': signed/unsigned mismatch
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.cpp(83,21): warning C4018: '<': signed/unsigned mismatch
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.cpp(104,29): warning C4018: '<=': signed/unsigned mismatch
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.cpp(107,34): warning C4018: '>': signed/unsigned mismatch
   clicker.cpp
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(42,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(43,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(67,16): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(68,16): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.h(64,21): warning C4018: '<': signed/unsigned mismatch
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.h(115,22): warning C4018: '<': signed/unsigned mismatch
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.h(136,30): warning C4018: '<=': signed/unsigned mismatch
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.h(139,35): warning C4018: '>': signed/unsigned mismatch
 E:\programiranje\c++\zavrsni_oop\clicker\clicker\clicker.cpp(34,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\clicker.cpp(83,16): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-  Text.cpp
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.h(64,21): warning C4018: '<': signed/unsigned mismatch
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.h(115,22): warning C4018: '<': signed/unsigned mismatch
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.h(136,30): warning C4018: '<=': signed/unsigned mismatch
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.h(139,35): warning C4018: '>': signed/unsigned mismatch
   Generating Code...
   clicker.vcxproj -> E:\programiranje\c++\zavrsni_oop\clicker\Debug\clicker.exe
