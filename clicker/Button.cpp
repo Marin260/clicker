@@ -1,4 +1,5 @@
 #include "Button.h"
+#include"Text.h"
 
 // -- overloading constructor (text, size of button, background color, text color, character size of text)
 
@@ -33,8 +34,8 @@ void Button::setPosition(sf::Vector2f btnPosition) {
 	button.setPosition(btnPosition);
 
 	// centering the text
-	float xBtnTxt = (btnPosition.x + button.getLocalBounds().width / 3.1) - (text.getLocalBounds().width / 2);
-	float yBtnTxt = (btnPosition.y + button.getLocalBounds().height / 3.5) - (text.getLocalBounds().height / 2);
+	float xBtnTxt = (btnPosition.x + button.getLocalBounds().width) - (120);
+	float yBtnTxt = (btnPosition.y + button.getLocalBounds().height) - (35);
 	text.setPosition({ xBtnTxt, yBtnTxt });
 	/*
 	What this basically does is:
@@ -57,6 +58,11 @@ void Button::drawButton(sf::RenderWindow& window) {
 	window.draw(text);   // then draw the text
 }
 
+void Button::setNewString(std::string value)
+{
+	text.setString(value);
+}
+
 // -- determining whether the mouse is on the button []
 
 bool Button::isMouseOverButton(sf::RenderWindow& window) {
@@ -74,4 +80,13 @@ bool Button::isMouseOverButton(sf::RenderWindow& window) {
 		return true;
 	}
 	else return false;
+}
+
+float Button::getBtnSize(char axis)
+{
+	sf::Vector2f size = button.getSize();
+	if (axis == 'x')
+		return size.x;
+	else if (axis == 'y')
+		return size.y;
 }

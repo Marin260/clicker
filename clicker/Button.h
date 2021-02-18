@@ -28,6 +28,11 @@ public:
 	// -- drawing the button
 	void drawButton(sf::RenderWindow& window);
 
+	// -- change text
+	void setNewString(std::string value);
+
 	// -- determining whether the mouse is on the button []
 	bool isMouseOverButton(sf::RenderWindow& window);
+
+	float getBtnSize(char axis);
 };

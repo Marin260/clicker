@@ -153,11 +153,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Business.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="clicker.cpp" />
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Business.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Text.h" />
   </ItemGroup>

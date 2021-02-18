@@ -11,6 +11,11 @@ void Descriptions::setFont(sf::Font& font) {
 	description.setFont(font);
 }
 
+void Descriptions::setNewDescription(std::string& value)
+{
+	description.setString(value);
+}
+
 void Descriptions::drawDescription(sf::RenderWindow& window) {
 	window.draw(description);
 }

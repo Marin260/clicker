@@ -1,9 +1,3 @@
-﻿  Text.cpp
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.cpp(35,20): warning C4018: '<': signed/unsigned mismatch
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.cpp(83,21): warning C4018: '<': signed/unsigned mismatch
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.cpp(104,29): warning C4018: '<=': signed/unsigned mismatch
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.cpp(107,34): warning C4018: '>': signed/unsigned mismatch
-  clicker.cpp
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\clicker.cpp(34,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
+﻿  clicker.cpp
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\clicker.cpp(49,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   clicker.vcxproj -> E:\programiranje\c++\zavrsni_oop\clicker\Debug\clicker.exe

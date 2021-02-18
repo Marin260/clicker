@@ -19,7 +19,7 @@ public:
 	Descriptions(std::string ssDesc, int charDesc, sf::Color colorDesc, sf::Vector2f posDesc);
 
 	void setFont(sf::Font& font);
-
+	void setNewDescription(std::string &value);
 
 
 	void drawDescription(sf::RenderWindow& window);
