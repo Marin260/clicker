@@ -17,12 +17,12 @@ Business::Business()
 		startX += buttons[i]->getBtnSize('x') + 30;
 	}
 
-	
 	startX = 30;
 	startY += 80;
 }
-Business::Business(double bV, double mult, double prof, double unl, double timePro, float x, float y)
-	: activate(0), state(0), multiplier(mult), profit(prof), unlock_price(unl), profit_time(timePro), upgrade_price(bV), lvl(1), startX(x), startY(y)
+Business::Business(double bV, double mult, double prof, double unl, double timePro, float x, float y, float toAuto)
+	: activate(0), state(0), multiplier(mult), profit(prof), unlock_price(unl), profit_time(timePro), 
+	upgrade_price(bV), lvl(1), startX(x), startY(y), timer(0), automate_price(toAuto)
 {
 	ArialCyr.loadFromFile("Fonts/ArialCyr.ttf");
 
@@ -71,6 +71,11 @@ double Business::getUnlockPrice()
 	return unlock_price;
 }
 
+double Business::getAutoPrice()
+{
+	return automate_price;
+}
+
 bool Business::getState()
 {
 	return state;
@@ -78,15 +83,20 @@ bool Business::getState()
 
 
 
-void Business::automate()
+void Business::automate(double& worldTime)
 {
 	// izmjena stanja
-	state == 1 ? state = 0 : state = 1;
+	state = 1;
+	autoBusinesses += 1;
+	timer = worldTime;
+	wallet -= automate_price;
+	updateBtnTxt(0, 0, 1);
 }
 
 void Business::add_to_wallet()
 {
 	wallet += profit * multiplier;
+	//std::cout << timer << std::endl;
 }
 
 void Business::unlock()
@@ -94,15 +104,10 @@ void Business::unlock()
 	// otkljucaj Business
 	if (activate == 0) activate = 1;
 	wallet -= unlock_price;
-	updateBtnTxt(0, 1);
+	updateBtnTxt(0, 1, 0);
 	unlockedBusinesses += 1;
 	std::cout << std::endl;
 	std::cout << unlockedBusinesses << std::endl;
-}
-
-void Business::work()
-{
-	wallet += profit * multiplier;
 }
 
 void Business::upgrade()
@@ -112,7 +117,7 @@ void Business::upgrade()
 	upgrade_price *= 1.07;
 	multiplier *= 1.02;
 	lvl += 1;
-	updateBtnTxt(1, 1);
+	updateBtnTxt(1, 1, 0);
 }
 
 void Business::drawBusiness(sf::RenderWindow& window)
@@ -122,17 +127,27 @@ void Business::drawBusiness(sf::RenderWindow& window)
 	}
 }
 
-void Business::updateBtnTxt(bool index1, bool index2)
+void Business::updateBtnTxt(bool index1, bool index2, bool index3)
 {
 	if (index1 != 0)
 		buttons[0]->setNewString("Upgrade:\n-" + std::to_string(upgrade_price));
 	if (index2 != 0)
 		buttons[1]->setNewString("+" + std::to_string(profit * multiplier));
+	if (index3 != 0)
+		buttons[2]->setNewString("AUTO: ON");
 }
 
 void Business::updateBtnColor(int index, sf::Color btnBgColor)
 {
 	buttons[index]->setBackgroundColor(btnBgColor);
+}
+
+void Business::updateTimer(double& worldTime)
+{
+	if (worldTime - timer > profit_time) {
+		add_to_wallet();
+		timer = worldTime;
+	}
 }
 
 void Business::setNewBtnTxt(int index, std::string txt)
@@ -147,3 +162,4 @@ bool Business::getStatus()
 
 double Business::wallet = 0;
 int Business::unlockedBusinesses = 0;
+int Business::autoBusinesses = 0;

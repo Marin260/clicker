@@ -36,13 +36,13 @@ int main()
 	/*
 	*/
 	Business container[7] = {
-		Business(10, 1, 1, 0, 1, 30, 30),
-		Business(50, 0.9, 5, 25, 1, 30, 110),
-		Business(200, 0.8, 25, 100, 1, 30, 190),
-		Business(1000, 0.7, 100, 500, 1, 30, 270),
-		Business(10000, 0.6, 1000, 5000, 1, 30, 350),
-		Business(50000, 0.5, 5000, 25000, 1, 30, 430),
-		Business(100000, 0.4, 10000, 500000, 1, 30, 510)
+		Business(10, 1, 1, 0, 1, 30, 30, 100),
+		Business(50, 0.9, 5, 25, 1, 30, 110, 1000),
+		Business(200, 0.8, 25, 100, 1, 30, 190, 10000),
+		Business(1000, 0.7, 100, 500, 1, 30, 270, 100000),
+		Business(10000, 0.6, 1000, 5000, 1, 30, 350, 1000000),
+		Business(50000, 0.5, 5000, 25000, 1, 30, 430, 10000000),
+		Business(100000, 0.4, 10000, 500000, 1, 30, 510, 100000000)
 	};
 
 	
@@ -95,15 +95,20 @@ int main()
 	//									 ---------- Game Loop ----------									 //
 	while (window.isOpen())
 	{
-		float timer = 0;
-		float time = 0;
+		double timer = 0;
 		timer = timeClock.getElapsedTime().asSeconds();
 		timer = ceilf(timer * 100) / 100; // turning it into normal lmao
-		time += timer;
-
+		
 		std::stringstream ss;
+		for (int j = 0; j < Business::autoBusinesses; j++) {
+			if (container[j].getState() == 1) {
+				container[j].updateTimer(timer);
+				
+			}
+		}
 		ss << "Elapsed time: " << timer;
 
+		/* ispis vremena na ekran*/
 		sf::Text clockTime;
 		clockTime.setFont(ArialCyr);
 		clockTime.setString(ss.str());
@@ -138,27 +143,32 @@ int main()
 					}
 					else if(container[i].getOneBtn(1, window) && container[i].getUnlockPrice() > Business::wallet && container[i].getStatus() == 0)
 						container[i].updateBtnColor(1, sf::Color::Black);
-					else if (container[i].getOneBtn(0, window)) {
-						container[i].updateBtnColor(0, sf::Color::Magenta); // inace stavi rozu
-					}
+					else if (container[i].getOneBtn(2, window) && container[i].getAutoPrice() > Business::wallet && container[i].getState() == 0)
+						container[i].updateBtnColor(2, sf::Color::Black);
+
 					else if (container[i].getOneBtn(0, window)) {
 						container[i].updateBtnColor(0, sf::Color::Magenta); // inace stavi rozu
 					}
 					else if (container[i].getOneBtn(1, window)) { //ako je preko drugog gumba onda stavi postavi njemu rozu
 						container[i].updateBtnColor(1, sf::Color::Magenta);
 					}
-					else if (container[i].getOneBtn(2, window)) { //ako je preko drugog gumba onda stavi postavi njemu rozu
+					else if (container[i].getOneBtn(2, window) && container[i].getState() == 0) { //ako je preko drugog gumba onda stavi postavi njemu rozu
 						container[i].updateBtnColor(2, sf::Color::Magenta);
 					}
 					else {
 						container[i].updateBtnColor(0, sf::Color::White); // and afterwards returned to normal
 						container[i].updateBtnColor(1, sf::Color::White);
-						container[i].updateBtnColor(2, sf::Color::White);
+						if (container[i].getState() == 1)
+							container[i].updateBtnColor(2, sf::Color::Green);
+						else
+							container[i].updateBtnColor(2, sf::Color::White);
 					}
 				}
 				break;
 			case sf::Event::MouseButtonPressed: // ako se gumb pretisne
 				for (int i = 0; i < Business::unlockedBusinesses + 1; i++) {
+					if (i == 8)
+						break;
 					if (container[i].getOneBtn(0, window) && container[i].getStatus() != 0) {// nadogradi button
 						if (container[i].getUpgradePrice() <= Business::wallet) {
 							container[i].upgrade();
@@ -168,12 +178,15 @@ int main()
 					else if (container[i].getOneBtn(1, window)) {// work button
 						if (container[i].getStatus() == 0 && container[i].getUnlockPrice() <= Business::wallet) {
 							container[i].unlock();
-							break;
 						}
 						else if (container[i].getStatus() == 1) {
 							container[i].add_to_wallet();
-							break;
 						}
+						break;
+					}
+					else if (container[i].getOneBtn(2, window)) {
+						if (container[i].getState() != 1 && container[i].getStatus() == 1 && container[i].getAutoPrice() <= Business::wallet)
+							container[i].automate(timer);
 					}
 				}
 			/*TODO
@@ -181,8 +194,8 @@ int main()
 				textbox1.typedOn(Event);
 			*/
 			}
-			balance = "Balance: " + std::to_string(Business::wallet);
 		}
+		balance = "Balance: " + std::to_string(Business::wallet);
 		// Display:
 		window.clear();
 		window.draw(sBackground);
@@ -191,10 +204,10 @@ int main()
 		//textbox1.drawTextBox(window);
 		
 		for (int i = 0; i < Business::unlockedBusinesses+1; i++) {
+			if (i == 7)
+				break;
 			container[i].drawBusiness(window);
 		}
-		
-		//test_prvi.drawBusiness(window);
 		window.draw(clockTime);
 		window.display();
 	}

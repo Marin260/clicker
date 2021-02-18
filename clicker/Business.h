@@ -5,31 +5,32 @@
 class Business{
 private:
 	bool state, activate;
-	double base_value, multiplier, profit, unlock_price, profit_time, upgrade_price;
+	double base_value, multiplier, profit, unlock_price, profit_time, upgrade_price, timer, automate_price;
 	int lvl;
 	float startX, startY;
 	std::vector<Button*> buttons;
-	std::string btnText[3] = {"/", "BUY \n" + std::to_string(unlock_price), "AUTO"};
+	std::string btnText[3] = {"/", "BUY \n" + std::to_string(unlock_price), "AUTO Earning\n-" + std::to_string(automate_price) };
 	
 	// font je potreban ovdje... ako se koristi u funkciji nestane nakon izlazna iz nje = program ne radi
 
 	sf::Font ArialCyr; // TO DO: check if you have to credit the author
 public:
-	static int unlockedBusinesses;
+	static int unlockedBusinesses, autoBusinesses;
 	static double wallet; 
 	Business();
-	Business(double bV, double mult, double prof, double unl, double timePro, float x, float y);
+	Business(double bV, double mult, double prof, double unl, double timePro, float x, float y, float toAuto);
 	~Business();
 
 
-	void automate();
+	void automate(double& worldTime);
 	void add_to_wallet();
 	void unlock();
-	void work();
 	void upgrade();
 	void drawBusiness(sf::RenderWindow& window);
-	void updateBtnTxt(bool index1 = 0, bool index2 = 0);
+	void updateBtnTxt(bool index1 = 0, bool index2 = 0, bool index3 = 0);
 	void updateBtnColor(int index, sf::Color btnBgColor);
+
+	void updateTimer(double& worldTime);
 
 	void setNewBtnTxt(int index, std::string txt);
 
@@ -37,6 +38,7 @@ public:
 	double getUpgradePrice();
 	double getTotalProfit();
 	double getUnlockPrice();
+	double getAutoPrice();
 	bool getState();
 	bool getStatus();
 };
