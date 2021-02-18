@@ -115,7 +115,7 @@ void Business::upgrade()
 	// povecaj profit Businessa
 	wallet -= upgrade_price;
 	upgrade_price *= 1.07;
-	multiplier *= 1.02;
+	multiplier *= 1.06;
 	lvl += 1;
 	updateBtnTxt(1, 1, 0);
 }
@@ -132,7 +132,7 @@ void Business::updateBtnTxt(bool index1, bool index2, bool index3)
 	if (index1 != 0)
 		buttons[0]->setNewString("Upgrade:\n-" + std::to_string(upgrade_price));
 	if (index2 != 0)
-		buttons[1]->setNewString("+" + std::to_string(profit * multiplier));
+		buttons[1]->setNewString("+" + std::to_string(profit * multiplier) + "\n lvl: " + std::to_string(lvl));
 	if (index3 != 0)
 		buttons[2]->setNewString("AUTO: ON");
 }

@@ -1,3 +1,4 @@
-﻿  Business.cpp
-E:\programiranje\c++\zavrsni_oop\clicker\clicker\Business.cpp(125,20): warning C4018: '<': signed/unsigned mismatch
+﻿  clicker.cpp
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\clicker.cpp(49,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\clicker.cpp(100,23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   clicker.vcxproj -> E:\programiranje\c++\zavrsni_oop\clicker\Debug\clicker.exe
