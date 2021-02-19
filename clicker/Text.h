@@ -12,18 +12,16 @@ class Descriptions {
 private:
 	sf::Text description;
 	//std::stringstream ssDesc;
-
+	sf::Font txtFont;
 public:
 	Descriptions() { }
 
 	Descriptions(std::string ssDesc, int charDesc, sf::Color colorDesc, sf::Vector2f posDesc);
 
-	void setFont(sf::Font& font);
+	//void setFont(sf::Font& font);
 	void setNewDescription(std::string &value);
 
-
 	void drawDescription(sf::RenderWindow& window);
-
 };
 
 
@@ -31,6 +29,7 @@ public:
 class TextBox {
 private:
 	sf::Text textbox;
+	sf::Font txtFont;
 	std::ostringstream text;
 	bool isSelected = false, hasLimit = false;
 	int limit;
@@ -43,7 +42,7 @@ public:
 	TextBox() {	}
 	TextBox(int size, sf::Color color, bool selected);
 
-	void setFont(sf::Font& font);
+	//void setFont(sf::Font& font);
 	void setPosition(sf::Vector2f position);
 	void setLimit(bool tf);
 	void setLimit(bool tf, int lim);

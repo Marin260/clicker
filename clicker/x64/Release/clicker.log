@@ -1,0 +1,8 @@
+﻿  Business.cpp
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(3,10): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Button.cpp
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\Button.h(3,10): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  clicker.cpp
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\clicker.cpp(6,9): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Text.cpp
+E:\programiranje\c++\zavrsni_oop\clicker\clicker\Text.h(2,10): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory

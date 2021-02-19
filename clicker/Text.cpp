@@ -7,16 +7,14 @@ Descriptions::Descriptions(std::string ssDesc, int charDesc, sf::Color colorDesc
 	description.setFillColor(colorDesc);
 }
 
-void Descriptions::setFont(sf::Font& font) {
-	description.setFont(font);
-}
-
 void Descriptions::setNewDescription(std::string& value)
 {
 	description.setString(value);
 }
 
 void Descriptions::drawDescription(sf::RenderWindow& window) {
+	txtFont.loadFromFile("Fonts/ArialCyr.ttf");
+	description.setFont(txtFont);
 	window.draw(description);
 }
 
@@ -55,14 +53,9 @@ TextBox::TextBox(int size, sf::Color color, bool selected) {
 	if (selected) {
 		textbox.setString("|");
 	}
-
 	else {
 		textbox.setString(""); // if not selected, nothing shows up
 	}
-}
-
-void TextBox::setFont(sf::Font& font) {
-	textbox.setFont(font); // set font
 }
 
 void TextBox::setPosition(sf::Vector2f position) {
@@ -98,6 +91,8 @@ std::string TextBox::getText() {
 }
 
 void TextBox::drawTextBox(sf::RenderWindow& window) {
+	txtFont.loadFromFile("Fonts/ArialCyr.ttf");
+	textbox.setFont(txtFont);
 	window.draw(textbox); // draw the textbox
 }
 

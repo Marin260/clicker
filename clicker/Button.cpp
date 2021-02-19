@@ -34,7 +34,7 @@ void Button::setPosition(sf::Vector2f btnPosition) {
 	button.setPosition(btnPosition);
 
 	// centering the text
-	float xBtnTxt = (btnPosition.x + button.getLocalBounds().width) - (120);
+	float xBtnTxt = (btnPosition.x + button.getLocalBounds().width) - (90);
 	float yBtnTxt = (btnPosition.y + button.getLocalBounds().height) - (35);
 	text.setPosition({ xBtnTxt, yBtnTxt });
 	/*
