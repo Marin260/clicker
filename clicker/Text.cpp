@@ -46,15 +46,17 @@ void TextBox::deleteLastCharacter() {
 }
 
 TextBox::TextBox(int size, sf::Color color, bool selected) {
+	textbox.setString("Player");
 	textbox.setCharacterSize(size);
 	textbox.setFillColor(color);
 	isSelected = selected;
-
+	std::string x = textbox.getString();
+	std::cout << x;
 	if (selected) {
-		textbox.setString("|");
+		textbox.setString(x);
 	}
 	else {
-		textbox.setString(""); // if not selected, nothing shows up
+		textbox.setString(textbox.getString() + ""); // if not selected, nothing shows up
 	}
 }
 
@@ -78,11 +80,15 @@ void TextBox::setSelected(bool sel) { // has the user clicked on the text box?
 		std::string t = text.str();
 		std::string newT = "";
 
-		for (int i = 0; i < t.length(); i++) {
-			newT += t[i];
+		if (t.length() == 0)
+			textbox.setString("Player");
+		else {
+			for (int i = 0; i < t.length(); i++) {
+				newT += t[i];
+			}
+			textbox.setString(newT);
 		}
-
-		textbox.setString(newT);
+		
 	}
 }
 
@@ -114,3 +120,10 @@ void TextBox::typedOn(sf::Event input) {
 		}
 	}
 }
+
+void TextBox::setTxt(std::string txt)
+{
+	textbox.setString(txt);
+}
+
+

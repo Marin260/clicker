@@ -50,4 +50,6 @@ public:
 	std::string getText();
 	void drawTextBox(sf::RenderWindow& window);
 	void typedOn(sf::Event input);
+
+	void setTxt(std::string txt);
 };

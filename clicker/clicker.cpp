@@ -18,7 +18,7 @@ int main()
 {
 	// srand(time(0)); // setting up a randomizer
 	// Window:
-	sf::RenderWindow window(sf::VideoMode(580, 768), "Clicker"); // Final window size: 500, 850
+	sf::RenderWindow window(sf::VideoMode(950, 768), "Clicker"); // Final window size: 500, 850
 	window.setFramerateLimit(60); // FPS
 
 	// Graphics:
@@ -49,7 +49,7 @@ int main()
 		Business("Space company", 100000, 0.4, 10000, 0, "Textures/Icons/Space.png")
 	};
 
-	//Player player1;
+	Player player1;
 
 
 	// Audio:
@@ -65,24 +65,16 @@ int main()
 
 	// Fonts:
 	/*
-	*/
-	/*
 	sf::Font ArialCyr; // TO DO: check if you have to credit the author
 	ArialCyr.loadFromFile("Fonts/ArialCyr.ttf");
 	*/
-
-	// Text:
-	/*TODO KASNIJE
-	TextBox textbox1(15, sf::Color::White, false); // <Text.h>, see Event loop for how to initialize
-	textbox1.setPosition({ 170, 150 });
-	textbox1.setFont(ArialCyr);
-	textbox1.setLimit(true, 20); // hasLimit = true, and the limit is 20 characters
-	*/
-
+	std::string rules = "Welcome to clicker. Run your businesses and grow.\n-Buying businesses\n-Earn money buy clicking on your businesses.\n-Upgrade for more money\n-Automate the earnings for extra cash\nHave fun!";
 	std::vector<Descriptions> gameDesc = {
 		Descriptions("Wallet: " + std::to_string(Business::wallet), 15, sf::Color::Yellow, { 50, 710 }),
 		Descriptions("Clicker game", 30, sf::Color::Yellow, { 50, 10 }),
-		Descriptions("Can you overflow your wallet?...", 20, sf::Color::Yellow, { 50, 50 })
+		Descriptions("Can you overflow your wallet?...", 20, sf::Color::Yellow, { 50, 50 }),
+		Descriptions("Profile:", 30, sf::Color::Yellow, { 550, 110 }),
+		Descriptions(rules, 15, sf::Color::Yellow, { 550, 500 })
 	};
 
 	//std::vector<Business> openBuis;
@@ -96,7 +88,7 @@ int main()
 	{
 		double timer = 0;
 		timer = timeClock.getElapsedTime().asSeconds();
-		timer = ceilf(timer * 100) / 100; // turning it into normal lmao
+		timer = ceil(timer * 100) / 100; // turning it into normal lmao
 		
 		std::stringstream ss;
 		for (int j = 0; j < Business::autoBusinesses; j++) {
@@ -111,23 +103,19 @@ int main()
 		clockTime.setString(ss.str());
 		clockTime.setCharacterSize(20); // in pixels, not points!
 		clockTime.setFillColor(sf::Color::White);
-		clockTime.setPosition(250, 860);
+		clockTime.setPosition(250, 710);
+		//clockTime.setFont(ArialCyr);
 		*/
-
 
 		// Event loop:
 		sf::Event event; // better not use lowercase event as a name
 
-		/*TODO KASNIJE
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) { // ENTER key if pressed
+		
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) // ENTER key if pressed
 			player1.name.setSelected(true); // text can be written
-		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))  // ESCAPE key if pressed
-			player1.name.setSelected(false); // exits selection
-		*/
-
-
+			player1.name.setSelected(false); // text can be written
+		
 
 		// LOGIKA IGRE
 		while (window.pollEvent(event)) {
@@ -177,6 +165,8 @@ int main()
 					else if (container[i].getOneBtn(2, window) && container[i].getState() == 0) {	// Treci gumb u redu
 						if (container[i].getAutoPrice() > Business::wallet)
 							container[i].updateBtnColor(2, sf::Color::Red);
+						else if (i != 0 && container[i-1].getState()==0)
+							container[i].updateBtnColor(2, sf::Color::Red);
 						else
 							container[i].updateBtnColor(2, sf::Color::Magenta);
 					}
@@ -195,41 +185,53 @@ int main()
 					if (container[i].getOneBtn(0, window) && container[i].getStatus() != 0) {// nadogradi button
 						if (container[i].getUpgradePrice() <= Business::wallet) {
 							container[i].upgrade();
+							player1.addClick();
+							player1.addUpgrade();
 						}
 						break;
 					}
 					else if (container[i].getOneBtn(1, window)) {// work button
 						if (container[i].getStatus() == 0 && container[i].getUnlockPrice() <= Business::wallet) {
 							container[i].unlock();
+							player1.addClick();
 						}
 						else if (container[i].getStatus() == 1) {
 							container[i].add_to_wallet();
+							player1.addClick();
 						}
 						break;
 					}
 					else if (container[i].getOneBtn(2, window)) { // auto button
-						if (container[i].getState() != 1 && container[i].getStatus() == 1 && container[i].getAutoPrice() <= Business::wallet)
-							container[i].automate(timer);
+						if (container[i].getState() != 1 && container[i].getStatus() == 1 && container[i].getAutoPrice() <= Business::wallet) {
+							if (i == 0) {
+								container[i].automate(timer);
+								player1.addClick();
+							}
+							else if (container[i - 1].getState() == 1) {
+								container[i].automate(timer);
+								player1.addClick();
+							}
+						}
 					}
 				}
-			/*TODO
+				if (player1.isOnIcon(window))
+					player1.changeIcon();
+				break;
 			case sf::Event::TextEntered: // when text is entered
 				player1.name.typedOn(event);
-			*/
 			}
 		}
 		std::string balance = "Wallet: " + std::to_string(Business::wallet);
 		// Display:
 		window.clear();
 		window.draw(sBackground);
-		//window.draw(nesto);
 
 		//				TEXT NA EKRANU
 		gameDesc[0].setNewDescription(balance);
 		for (auto desc : gameDesc) 
 			desc.drawDescription(window);
-		
-		//player1.drawPlayer(window);
+		//				PROFIL
+		player1.drawPlayer(window);
 		
 		for (int i = 0; i < Business::unlockedBusinesses+1; i++) {// crtanje buttona
 			if (i == 7)
@@ -245,9 +247,8 @@ int main()
 /*
 												+++++++++ TO DO +++++++++
 
-- Button popping up and disappearing based on criterium
-- Implement .cpp's for .h's
-- Figure out how to deal with fullscreen
-- Figure out why text is randomly written into the text box at times
-
+- OCISTITI KOD:
+	- Napraviti game klasu u koju mozemo strpati logiku (ako je moguce)
+		- Ili nekako Optimizirati na neki nacin
+	- Text nesmije biti hard coded nego loadati iz datoteke.txt
 */

@@ -72,8 +72,8 @@ bool Button::isMouseOverButton(sf::RenderWindow& window) {
 	float btnPosX = button.getPosition().x; // x coordinate of the button
 	float btnPosY = button.getPosition().y; // y coordinate of the button
 
-	float btnPositionWidth = button.getPosition().x + button.getLocalBounds().width; // button width boundary
-	float btnPositionHeight = button.getPosition().y + button.getLocalBounds().height; // button height boundary
+	float btnPositionWidth = btnPosX + button.getLocalBounds().width; // button width boundary
+	float btnPositionHeight = btnPosY + button.getLocalBounds().height; // button height boundary
 
 																					   // if the mouse is within the button || smaller than lower end, greater than upper end (x or y)
 	if (mouseX < btnPositionWidth && mouseX > btnPosX&& mouseY < btnPositionHeight && mouseY > btnPosY) {

@@ -7,7 +7,7 @@ Business::Business() // Default constructor
 
 Business::Business(std::string bN, double bV, double mult, double prof, double unl, std::string texture)
 	: activate(0), state(0), name(bN), upgrade_price(bV), multiplier(mult), profit(prof), unlock_price(unl),
-	  profit_time(1), lvl(1), timer(0), automate_price(prof*1000), desc(name, 20, sf::Color::Yellow, { 120, startY-30 })
+	  profit_time(1), lvl(1), timer(0), automate_price(prof*1000), desc(name, 20, sf::Color::Yellow, { startX, startY-30 })
 {
 	ArialCyr.loadFromFile("Fonts/ArialCyr.ttf"); // loadaj font koji ce se koristit za text
 
@@ -22,10 +22,10 @@ Business::Business(std::string bN, double bV, double mult, double prof, double u
 	// postavljanje icone Businessa
 	icon.loadFromFile(texture);
 	BusinessImg.setTexture(icon);
-	BusinessImg.setPosition(50, startY);
+	startX = 100;
+	BusinessImg.setPosition(startX-80, startY);
 
 	// osvijezi pozicijske atribute
-	startX = 120;
 	startY += 90;
 }
 
@@ -151,5 +151,5 @@ bool Business::getStatus()
 double Business::wallet = 0;			// Ukupan novac
 int Business::unlockedBusinesses = 0;	// broj kupljenih businessa
 int Business::autoBusinesses = 0;		// broj automatiziranih businessa
-float Business::startX = 120;			// pecatak x koordinate
+float Business::startX = 100;			// pecatak x koordinate
 float Business::startY = 110;			// pecatak y koordinate
