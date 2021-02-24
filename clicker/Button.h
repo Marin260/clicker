@@ -36,3 +36,5 @@ public:
 
 	float getBtnSize(char axis);
 };
+
+// originalno smo komentare pisali na engleski ali nemamo volje mijenjati sve

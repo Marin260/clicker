@@ -7,7 +7,7 @@
 #define ENTER_KEY 13
 #define ESCAPE_KEY 27
 
-// TO DO, this is just a test
+
 class Descriptions {
 private:
 	sf::Text description;

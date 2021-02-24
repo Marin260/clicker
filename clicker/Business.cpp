@@ -2,16 +2,16 @@
 
 Business::Business() // Default constructor
 	: activate(0), state(0), name("/"), upgrade_price(0), multiplier(1), profit(1), unlock_price(0),
-	profit_time(1), lvl(1), timer(0), automate_price(profit * 1000), desc(name, 20, sf::Color::Yellow, { 120, startY - 30 })
+	profit_time(1), lvl(1), timer(0), automate_price(profit * 1000), desc(name, 20, sf::Color::White, { 120, startY - 30 })
 {}
 
 Business::Business(std::string bN, double bV, double mult, double prof, double unl, std::string texture)
 	: activate(0), state(0), name(bN), upgrade_price(bV), multiplier(mult), profit(prof), unlock_price(unl),
-	  profit_time(1), lvl(1), timer(0), automate_price(prof*1000), desc(name, 20, sf::Color::Yellow, { startX, startY-30 })
+	  profit_time(1), lvl(1), timer(0), automate_price(prof*1000), desc(name, 20, sf::Color::White, { startX, startY-30 })
 {
-	ArialCyr.loadFromFile("Fonts/ArialCyr.ttf"); // loadaj font koji ce se koristit za text
+	ArialCyr.loadFromFile("Fonts/ArialCyr.ttf"); // loadaj font koji ce se koristit za tekst
 
-	btnText[0] = "Upgrade:\n-" + std::to_string(upgrade_price); // text na upgrade buttonu
+	btnText[0] = "Upgrade:\n-" + std::to_string(upgrade_price); // tekst na upgrade buttonu
 
 	for (int i = 0; i < 3; i++) { // kreiranje 3 buttona za svaki novi business
 		buttons.push_back(new Button(btnText[i], { 120, 50 }, sf::Color::White, sf::Color::Black, 10));
@@ -19,13 +19,13 @@ Business::Business(std::string bN, double bV, double mult, double prof, double u
 		buttons[i]->setPosition({ startX, startY }); // postavljanje pozicije na ekranu sa staticnim atributima
 		startX += buttons[i]->getBtnSize('x') + 30;  // osvijezi x koordinatu
 	}
-	// postavljanje icone Businessa
+	// postavljanje ikone Businessa
 	icon.loadFromFile(texture);
 	BusinessImg.setTexture(icon);
 	startX = 100;
 	BusinessImg.setPosition(startX-80, startY);
 
-	// osvijezi pozicijske atribute
+	// osvjezi pozicijske atribute
 	startY += 90;
 }
 
@@ -37,7 +37,7 @@ Business::~Business()
 	}
 }
 
-// FUNKCIJONALNOST....
+// FUNKCIONALNOST....
 void Business::unlock()
 {   // otkljucaj Business
 	if (activate == 0) activate = 1;
@@ -80,7 +80,7 @@ void Business::updateTimer(double& worldTime)
 
 // Crtanje na ekran
 void Business::drawBusiness(sf::RenderWindow& window)
-{	// Ispis texta u buttonsa
+{	// Ispis teksta u buttonsa
 	window.draw(BusinessImg);
 	desc.drawDescription(window);
 	for (auto button : buttons)
@@ -88,7 +88,7 @@ void Business::drawBusiness(sf::RenderWindow& window)
 }
 
 void Business::updateBtnTxt(bool index1, bool index2, bool index3)
-{	// Azuriranje texta na buttonu, argumenti su booleani koji oznacavaju koji text se mora promjenit
+{	// Azuriranje teksta na buttonu, argumenti su booleani koji oznacavaju koji tekst se mora promjenit
 	if (index1 != 0)
 		buttons[0]->setNewString("Upgrade:\n-" + std::to_string(upgrade_price));
 	if (index2 != 0)
@@ -148,7 +148,7 @@ bool Business::getStatus()
 }
 
 // staticne var
-double Business::wallet = 0;			// Ukupan novac
+double Business::wallet = 0;			// Ukupan novac 
 int Business::unlockedBusinesses = 0;	// broj kupljenih businessa
 int Business::autoBusinesses = 0;		// broj automatiziranih businessa
 float Business::startX = 100;			// pecatak x koordinate

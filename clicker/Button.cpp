@@ -2,7 +2,6 @@
 #include"Text.h"
 
 // -- overloading constructor (text, size of button, background color, text color, character size of text)
-
 Button::Button(std::string btnT, sf::Vector2f btnSize, sf::Color btnBgColor, sf::Color btnTxtColor, int btnCharSize) {
 	text.setString(btnT);
 	text.setFillColor(btnTxtColor);
@@ -12,7 +11,6 @@ Button::Button(std::string btnT, sf::Vector2f btnSize, sf::Color btnBgColor, sf:
 }
 
 // -- setting the font of the button
-
 void Button::setFont(sf::Font& font) {
 	text.setFont(font);
 }
@@ -90,3 +88,5 @@ float Button::getBtnSize(char axis)
 	else if (axis == 'y')
 		return size.y;
 }
+
+// originalno smo komentare pisali na engleski ali nemamo volje mijenjati sve

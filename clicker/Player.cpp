@@ -1,9 +1,9 @@
 #include "Player.h"
 Player::Player()
 	:lvl(1), total_clicks(0), total_upgrades(0), name(30, sf::Color::White, false), forImg(1),
-	profile("Lvl: " + std::to_string(lvl) + "\nTotal clicks: " + std::to_string(total_clicks) + "\nTotal upgrades: " + std::to_string(total_upgrades), 15, sf::Color::Yellow, { 630, 160 })//, name("Player")
+	profile("Level: " + std::to_string(lvl) + "\nTotal clicks: " + std::to_string(total_clicks) + "\nTotal upgrades: " + std::to_string(total_upgrades), 15, sf::Color::Yellow, { 630, 160 })//, name("Player")
 {
-	name.setPosition({ 650, 110 });
+	name.setPosition({ 657, 110 });
 	name.setLimit(true, 17);
 	
 	icon.loadFromFile("Textures/Icons/Male.png");
@@ -74,6 +74,6 @@ void Player::changeIcon()
 
 void Player::updatePlayer()
 {
-	std::string update = "Lvl: " + std::to_string(lvl) + "\nTotal clicks: " + std::to_string(total_clicks) + "\nTotal upgrades: " + std::to_string(total_upgrades);
+	std::string update = "Level: " + std::to_string(lvl) + "\nTotal clicks: " + std::to_string(total_clicks) + "\nTotal upgrades: " + std::to_string(total_upgrades);
 	profile.setNewDescription(update);
 }

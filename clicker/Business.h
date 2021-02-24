@@ -11,9 +11,9 @@ private:
 	static float startX, startY;
 	std::vector<Button*> buttons;
 	std::string btnText[3] = {"/", "BUY\n" + std::to_string(unlock_price), "AUTO Earning\n-" + std::to_string(automate_price) };
-	
+
 	// font je potreban ovdje... ako se koristi u funkciji nestane nakon izlazna iz nje = program ne radi
-	sf::Font ArialCyr; // TO DO: check if you have to credit the author
+	sf::Font ArialCyr;
 
 	Descriptions desc;
 	sf::Texture icon;
@@ -25,7 +25,7 @@ public:
 	Business(std::string bN, double bV, double mult, double prof, double unl, std::string texture);
 	~Business();
 
-	// FUNKCIJONALNOST....
+	// FUNKCIONALNOST...
 	void unlock();
 	void upgrade();
 	void add_to_wallet();

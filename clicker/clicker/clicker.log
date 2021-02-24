@@ -1,2 +1,4 @@
 ﻿  clicker.cpp
-  clicker.vcxproj -> E:\programiranje\c++\zavrsni_oop\clicker\clicker\clicker.exe
+C:\Users\Marino\Desktop\OOP\zavrsni_rad_oop\clicker\clicker.cpp(192,13): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Marino\Desktop\OOP\zavrsni_rad_oop\clicker\clicker.cpp(193,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  clicker.vcxproj -> C:\Users\Marino\Desktop\OOP\zavrsni_rad_oop\clicker\clicker.exe

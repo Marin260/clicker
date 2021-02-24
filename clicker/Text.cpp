@@ -20,29 +20,29 @@ void Descriptions::drawDescription(sf::RenderWindow& window) {
 
 void TextBox::inputLogic(int charTyped) {
 	if (charTyped != DELETE_KEY && charTyped != ENTER_KEY && charTyped != ESCAPE_KEY) {
-		text << static_cast<char>(charTyped); // if not special key, add to the text variable
+		text << static_cast<char>(charTyped); // ako nije SPECIAL KEY, onda dodaj tekstu
 	}
 	else if (charTyped == DELETE_KEY) {
-		if (text.str().length() > 0) { // only allow delete if there has been input
+		if (text.str().length() > 0) { // delete samo ako ima inputa
 			deleteLastCharacter();
 		}
 	}
 
-	textbox.setString(text.str() + "|"); // indicator of next character
+	textbox.setString(text.str() + "|"); // indikator za iduci character
 }
 
 void TextBox::deleteLastCharacter() {
 	std::string t = text.str();
 	std::string newT = "";
 
-	for (int i = 0; i < t.length() - 1; i++) { // copy everything but the last key
+	for (int i = 0; i < t.length() - 1; i++) { // kopiraj sve osim zadnjeg charactera
 		newT += t[i];
 	}
 
-	text.str(""); // clear before copy
-	text << newT; // copy
+	text.str(""); // ocisti prije kopiranja
+	text << newT; // kopiraj
 
-	textbox.setString(text.str()); // set the variable
+	textbox.setString(text.str()); // postavi varijablu
 }
 
 TextBox::TextBox(int size, sf::Color color, bool selected) {
@@ -56,12 +56,12 @@ TextBox::TextBox(int size, sf::Color color, bool selected) {
 		textbox.setString(x);
 	}
 	else {
-		textbox.setString(textbox.getString() + ""); // if not selected, nothing shows up
+		textbox.setString(textbox.getString() + ""); // ako nije selektirano, nista se pojavljuje
 	}
 }
 
 void TextBox::setPosition(sf::Vector2f position) {
-	textbox.setPosition(position); // set position in window
+	textbox.setPosition(position); // postavi poziciju u prozoru
 }
 
 void TextBox::setLimit(bool tf) {
@@ -70,10 +70,10 @@ void TextBox::setLimit(bool tf) {
 
 void TextBox::setLimit(bool tf, int lim) {
 	hasLimit = tf;
-	limit = lim - 1; // deciding on limit
+	limit = lim - 1; // odluka za limit
 }
 
-void TextBox::setSelected(bool sel) { // has the user clicked on the text box?
+void TextBox::setSelected(bool sel) { // je li korisnik u textboxu?
 	isSelected = sel;
 
 	if (!sel) {
@@ -103,19 +103,19 @@ void TextBox::drawTextBox(sf::RenderWindow& window) {
 }
 
 void TextBox::typedOn(sf::Event input) {
-	if (isSelected) { // only if the user has decided to type in the text box
+	if (isSelected) { // samo ako je korisnik odlucio nesto unesti u textbox
 		int charTyped = input.text.unicode;
-		if (charTyped < 128) { // only basic characters, edit later
-			if (hasLimit) { // if the limit has been set
+		if (charTyped < 128) { // samo basic characters
+			if (hasLimit) { // ako limit postoji
 				if (text.str().length() <= limit) {
-					inputLogic(charTyped); // if limit not passed, add
+					inputLogic(charTyped); // dodaj ako limit nije prekoracen
 				}
 				else if (text.str().length() > limit&& charTyped == DELETE_KEY) {
-					deleteLastCharacter(); // allowing the user to delete even after reaching limit
+					deleteLastCharacter(); // delete nakon dolaska do limita
 				}
 			}
 			else {
-				inputLogic(charTyped); // without limit
+				inputLogic(charTyped); // bez limita
 			}
 		}
 	}
